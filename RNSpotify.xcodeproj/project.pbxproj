@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DB2659C11D988807009BD2B1 /* RNSpotify.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2659C01D988807009BD2B1 /* RNSpotify.m */; };
 		DB2659C21D988807009BD2B1 /* RNSpotify.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB2659BF1D988807009BD2B1 /* RNSpotify.h */; };
+		DB2659CE1D98897C009BD2B1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2659CD1D98897C009BD2B1 /* AVFoundation.framework */; };
+		DB265A471D98E651009BD2B1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB265A461D98E651009BD2B1 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +30,8 @@
 		DB2659BC1D988807009BD2B1 /* libRNSpotify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNSpotify.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB2659BF1D988807009BD2B1 /* RNSpotify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNSpotify.h; sourceTree = "<group>"; };
 		DB2659C01D988807009BD2B1 /* RNSpotify.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNSpotify.m; sourceTree = "<group>"; };
+		DB2659CD1D98897C009BD2B1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DB265A461D98E651009BD2B1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB265A471D98E651009BD2B1 /* SystemConfiguration.framework in Frameworks */,
+				DB2659CE1D98897C009BD2B1 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +52,7 @@
 			children = (
 				DB2659BE1D988807009BD2B1 /* RNSpotify */,
 				DB2659BD1D988807009BD2B1 /* Products */,
+				DB2659C81D9888F9009BD2B1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,15 @@
 				DB2659C01D988807009BD2B1 /* RNSpotify.m */,
 			);
 			path = RNSpotify;
+			sourceTree = "<group>";
+		};
+		DB2659C81D9888F9009BD2B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB265A461D98E651009BD2B1 /* SystemConfiguration.framework */,
+				DB2659CD1D98897C009BD2B1 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,7 +186,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../react-native/React/**",
+					"$(SRCROOT)/node_modules/react-native/React/**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -211,7 +231,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../react-native/React/**",
+					"$(SRCROOT)/node_modules/react-native/React/**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -221,6 +245,10 @@
 		DB2659C61D988807009BD2B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -230,6 +258,10 @@
 		DB2659C71D988807009BD2B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -255,6 +287,7 @@
 				DB2659C71D988807009BD2B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

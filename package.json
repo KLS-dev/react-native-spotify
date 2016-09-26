@@ -1,0 +1,22 @@
+{
+  "name": "react-native-spotify",
+  "version": "0.0.0",
+  "description": "a spotify ios and android sdk wrapper for react native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KLS-dev/react-native-spotify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KLS-dev/react-native-spotify/issues"
+  },
+  "homepage": "https://github.com/KLS-dev/react-native-spotify#readme",
+  "devDependencies": {
+    "react-native": "^0.34.0"
+  }
+}

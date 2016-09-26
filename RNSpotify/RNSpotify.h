@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Spotify/Spotify.h>
+#import "RCTBridgeModule.h"
 
-@interface RNSpotify : NSObject
+@interface RNSpotify : NSObject <RCTBridgeModule, SPTAudioStreamingDelegate>
 
 @end

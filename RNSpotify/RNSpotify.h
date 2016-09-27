@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import <Spotify/Spotify.h>
 #import "RCTBridgeModule.h"
 

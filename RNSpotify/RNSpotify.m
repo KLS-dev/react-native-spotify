@@ -76,8 +76,9 @@ RCT_EXPORT_METHOD(play:(NSString *) songId)
 }
 
 - (void)audioStreamingDidLogin:(SPTAudioStreamingController *)audioStreaming {
+    MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
+    MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
     NSURL *url = [NSURL URLWithString:@"spotify:track:58s6EuEYJdlb0kO7awm3Vp"];
-    NSLog(@"cool");
     [self.player playSpotifyURI:@"spotify:track:2waU8KeUmIb9eVfxkHGjvI"
               startingWithIndex:0
            startingWithPosition:10
@@ -86,8 +87,26 @@ RCT_EXPORT_METHOD(play:(NSString *) songId)
                                NSLog(@"*** failed to play: %@", error);
                                return;
                            }
-                       }];
-
+                           infoCenter.nowPlayingInfo = @{
+                                                         MPMediaItemPropertyTitle: @"chingon"
+                                                         };
+                           
+                           [commandCenter.playCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+                               NSLog(@"si entro comando =0");
+                               [self.player setIsPlaying:YES callback:^(NSError *error) {
+                                   NSLog(@"si ejecuto :)");
+                               }];
+                               return MPRemoteCommandHandlerStatusSuccess;
+                           }];
+                           
+                           [commandCenter.pauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+                               NSLog(@"si entro comando =0");
+                               [self.player setIsPlaying:NO callback:^(NSError *error) {
+                                   NSLog(@"si ejecuto :)");
+                               }];
+                               return MPRemoteCommandHandlerStatusSuccess;
+                           }];
+                        }];
 }
 
 -(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming

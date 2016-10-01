@@ -28,4 +28,6 @@ android {
 dependencies {
     compile 'com.facebook.react:react-native:+'
     // This library handles authentication and authorization
+    compile(name: 'spotify-auth-beta22-noconnect-2.20b', ext: 'aar')
+    compile(name: 'spotify-player-beta22-noconnect-2.20b', ext: 'aar')
 }

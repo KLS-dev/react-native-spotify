@@ -28,32 +28,26 @@ RCT_EXPORT_METHOD(setup:(NSString *) clientId)
 }
 RCT_EXPORT_METHOD(goToLogin:(NSString *) url)
 {
-    SPTAuth *auth = [SPTAuth defaultInstance];
+    [[SPTAuth defaultInstance] setRedirectURL:[NSURL URLWithString:url]];
+    [[SPTAuth defaultInstance] setRequestedScopes:@[SPTAuthStreamingScope]];
 
-    [auth setRedirectURL:[NSURL URLWithString:url]];
-    [auth setRequestedScopes:@[SPTAuthStreamingScope]];
-    NSLog(@"popo");
-    // Construct a login URL and open it
-    NSURL *loginURL = [auth loginURL];
+    NSURL *loginURL = [[SPTAuth defaultInstance] loginURL];
 
-    // Opening a URL in Safari close to application launch may trigger
-    // an iOS bug, so we wait a bit before doing so.
     [RCTSharedApplication() openURL:loginURL];
 }
 
 RCT_EXPORT_METHOD(handleAuthCallbackUrl:(NSString *) eventUrl callback:(RCTResponseSenderBlock) callback)
 {
-    SPTAuth *auth = [SPTAuth defaultInstance];
     NSURL *url = [NSURL URLWithString:eventUrl];
 
-    if ([auth canHandleURL:url]) {
-        [auth handleAuthCallbackWithTriggeredAuthURL:url callback:^(NSError *error, SPTSession *session) {
+    if ([[SPTAuth defaultInstance] canHandleURL:url]) {
+        [[SPTAuth defaultInstance] handleAuthCallbackWithTriggeredAuthURL:url callback:^(NSError *error, SPTSession *session) {
             if (error != nil) {
                 NSLog(@"*** Auth error: %@", error);
                 callback(@[error]);
                 return;
             }
-            
+
             [self loginUsingSession:session];
             callback(@[[NSNull null]]);
         }];
@@ -63,7 +57,7 @@ RCT_EXPORT_METHOD(handleAuthCallbackUrl:(NSString *) eventUrl callback:(RCTRespo
 RCT_EXPORT_METHOD(play:(NSString *) songId)
 {
     NSString *uri = [NSString stringWithFormat:@"spotify:track:%@", songId];
-    }
+}
 
 -(void)loginUsingSession:(SPTSession *)session {
     // Get the player instance
